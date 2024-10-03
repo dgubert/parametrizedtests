@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+            "com.codeborne:selenide:7.5.1",
+            "org.junit.jupiter:junit-jupiter:5.11.0",
+            "org.slf4j:slf4j-simple:2.0.16"
+    )
+}
+
+test {
+    jvmArgs = ['-Dorg.slf4j.simpleLogger.defaultLogLevel=WARN']
+    useJUnitPlatform()
+}

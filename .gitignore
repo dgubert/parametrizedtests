@@ -1,0 +1,21 @@
+HELP.md
+build/
+!**/src/main/**
+!**/src/test/**
+src/test/java/Snippets.java
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### Gradle ###
+.gradle
+gradle
+gradlew
+gradlew.bat
+settings.gradle
+
+### Logs ###
+*.log
