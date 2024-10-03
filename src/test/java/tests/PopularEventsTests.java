@@ -46,7 +46,7 @@ public class PopularEventsTests {
     @ParameterizedTest(name = "Проверка отображения {0} в разделе Популярных событий")
     @ValueSource( strings = {"КХЛ", "Евролига", "Лига ВТБ"})
     void sportShouldBeInPopularByValueSource(String sport) {
-        open("");
+        openMainPage();
 
         sportShouldBeInPopular(sport, true);
     }
@@ -60,7 +60,7 @@ public class PopularEventsTests {
             "Хоккей, false"
     })
     void sportShouldBeInPopularByCsvSource(String sport, boolean state) {
-        open("");
+        openMainPage();
 
         sportShouldBeInPopular(sport, state);
     }
@@ -68,7 +68,7 @@ public class PopularEventsTests {
     @ParameterizedTest(name = "Проверка отображения {0} в разделе Популярных событий (state={1})")
     @CsvFileSource(files = "src/test/resources/popular.csv", useHeadersInDisplayName = false)
     void sportShouldBeInPopularByCsvFileSource(String sport, boolean state) {
-        open("");
+        openMainPage();
 
         sportShouldBeInPopular(sport, state);
     }
@@ -76,7 +76,7 @@ public class PopularEventsTests {
     @ParameterizedTest(name = "Проверка отображения {0} в разделе Популярных событий")
     @EnumSource(value = SPORTS.class)
     void sportShouldBeInPopularByEnumSource(SPORTS sport) {
-        open("");
+        openMainPage();
 
         sportShouldBeInPopular(sport.name, sport.state);
     }
@@ -84,7 +84,7 @@ public class PopularEventsTests {
     @ParameterizedTest(name = "Проверка отображения {0} в разделе Популярных событий")
     @MethodSource
     void sportShouldBeInPopularByMethodSource(String sport) {
-        open("");
+        openMainPage();
 
         sportShouldBeInPopular(sport, true);
     }
@@ -93,6 +93,9 @@ public class PopularEventsTests {
         return Stream.of("КХЛ", "Евролига", "Лига ВТБ");
     }
 
+    void openMainPage() {
+        open("");
+    }
     void sportShouldBeInPopular(String sport, boolean state) {
         if (state) {
             popularEvents.shouldHave(text(sport));
