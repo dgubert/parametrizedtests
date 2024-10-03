@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class PopularEventsTests {
 
-    final static SelenideElement popularEvents = $(byText("Популярные")).parent();
+    final static SelenideElement popularEvents = $(".menu-panel__scroll").$(byText("Популярные")).parent();
     enum SPORTS {
         FOOTBALL("Футбол", false),
         BASKETBALL("Баскетбол", false),
@@ -45,7 +45,7 @@ public class PopularEventsTests {
 
     @ParameterizedTest(name = "Проверка отображения {0} в разделе Популярных событий")
     @ValueSource( strings = {"КХЛ", "Евролига", "Лига ВТБ"})
-    void sportShouldBeInPopularByValueSource(String sport) {
+    void sportShouldBeInPopularByValueSourceTest(String sport) {
         openMainPage();
 
         sportShouldBeInPopular(sport, true);
@@ -59,7 +59,7 @@ public class PopularEventsTests {
             "Футбол, false",
             "Хоккей, false"
     })
-    void sportShouldBeInPopularByCsvSource(String sport, boolean state) {
+    void sportShouldBeInPopularByCsvSourceTest(String sport, boolean state) {
         openMainPage();
 
         sportShouldBeInPopular(sport, state);
@@ -67,7 +67,7 @@ public class PopularEventsTests {
 
     @ParameterizedTest(name = "Проверка отображения {0} в разделе Популярных событий (state={1})")
     @CsvFileSource(files = "src/test/resources/popular.csv", useHeadersInDisplayName = false)
-    void sportShouldBeInPopularByCsvFileSource(String sport, boolean state) {
+    void sportShouldBeInPopularByCsvFileSourceTest(String sport, boolean state) {
         openMainPage();
 
         sportShouldBeInPopular(sport, state);
@@ -75,7 +75,7 @@ public class PopularEventsTests {
 
     @ParameterizedTest(name = "Проверка отображения {0} в разделе Популярных событий")
     @EnumSource(value = SPORTS.class)
-    void sportShouldBeInPopularByEnumSource(SPORTS sport) {
+    void sportShouldBeInPopularByEnumSourceTest(SPORTS sport) {
         openMainPage();
 
         sportShouldBeInPopular(sport.name, sport.state);
@@ -83,13 +83,13 @@ public class PopularEventsTests {
 
     @ParameterizedTest(name = "Проверка отображения {0} в разделе Популярных событий")
     @MethodSource
-    void sportShouldBeInPopularByMethodSource(String sport) {
+    void sportShouldBeInPopularByMethodSourceTest(String sport) {
         openMainPage();
 
         sportShouldBeInPopular(sport, true);
     }
 
-    static Stream<String> sportShouldBeInPopularByMethodSource() {
+    static Stream<String> sportShouldBeInPopularByMethodSourceTest() {
         return Stream.of("КХЛ", "Евролига", "Лига ВТБ");
     }
 
